@@ -9,6 +9,6 @@ server.use(express.urlencoded({ extended: true }));
 
 server.use('/', router);
 
-server.listen(3000, () => {
-  console.log('Serviço rodanto: http://localhost:3000');
+server.listen(3001, () => {
+  console.log('Serviço rodando: http://localhost:3001');
 });

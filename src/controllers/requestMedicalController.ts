@@ -2,15 +2,37 @@ import { Request, Response } from "express";
 import {
   getRequestMedicalCare,
   createRequestMedicalCare,
+  updateRequestMedicalCare,
   deleteRequestMedicalCare,
 } from "../services/requestMedicalCare";
 import { DataRequest } from "../types/dataRequest";
 
 export const createMedicalRequest = async (req: Request, res: Response) => {
   try {
-    const { date = "", name = "", phone = "", address = "" } = req.body || {};
+    const {
+      date = "",
+      name = "",
+      phone = "",
+      cep = "",
+      street = "",
+      number = "",
+      complement = "",
+      neighborhood = "",
+      city = "",
+      state = "",
+    } = req.body || {};
 
-    if (!date || !name || !phone || !address) {
+    if (
+      !date ||
+      !name ||
+      !phone ||
+      !cep ||
+      !street ||
+      !number ||
+      !neighborhood ||
+      !city ||
+      !state
+    ) {
       res.status(400).json({ error: "Todos os campos são obrigatórios" });
       return;
     }
@@ -19,17 +41,22 @@ export const createMedicalRequest = async (req: Request, res: Response) => {
       date,
       name,
       phone,
-      address,
+      cep,
+      street,
+      number,
+      complement,
+      neighborhood,
+      city,
+      state,
     };
 
-    await createRequestMedicalCare(dataRequest);
+    const result = await createRequestMedicalCare(dataRequest);
     res.status(201).json({
-      infoRequestCare: dataRequest,
+      infoRequestCare: result,
       careProtocol: "11235813213455",
       doctor: "Dr. João Pedro",
     });
   } catch (error) {
-    console.error("Erro ao criar solicitação:", error);
     res.status(500).json({ error: "Erro interno ao criar a solicitação" });
   }
 };
@@ -39,13 +66,26 @@ export const listMedicalRequests = async (req: Request, res: Response) => {
   res.status(200).json({ requests: list });
 };
 
+export const updateMedicalRequest = async (req: Request, res: Response) => {
+  const { id } = req.query;
+  const dataRequest = req.body;
+  if (!id) {
+    res.status(400).json({ error: "Não foi possivel encontrar a solicitação" });
+    return;
+  }
+
+  const result =  await updateRequestMedicalCare(id as string, dataRequest);
+  res
+    .status(200)
+    .json({ message: "Solicitação atualizada com sucesso", result });
+};
+
 export const deleteMedicalRequest = async (req: Request, res: Response) => {
   const { id } = req.query;
   if (!id) {
     res.status(400).json({ error: "Não foi possivel encontrar a solicitação" });
     return;
   }
-
-  await deleteRequestMedicalCare(id as string);
-  res.status(200).json({ message: "Solicitação excluída com sucesso" });
+  const result = await deleteRequestMedicalCare(id as string);
+  res.status(200).json({ message: "Solicitação excluída com sucesso", result });
 };
