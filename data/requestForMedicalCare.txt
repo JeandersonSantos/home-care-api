@@ -1,3 +1,6 @@
 
 {"date":"20/10/2025","name":"Amanda","phone":"(85)99855-8545","address":"Rua Dom João xiii"}
 {"date":"20/10/2025","name":"Jeanderson","phone":"(85)99855-8545","address":"Rua Dom João xiii"}
+{"date":"20/10/2025","name":"João","phone":"(85)99855-8545","address":"Rua Dom João xiii"}
+{"date":"20/10/2025","name":"Maria","phone":"(85)99855-8545","address":"Rua Dom João xiii"}
+{"date":"20/10/2025","name":"José","phone":"(85)99855-8545","address":"Rua Dom João xiii"}
