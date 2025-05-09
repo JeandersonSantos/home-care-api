@@ -1,0 +1,29 @@
+{
+  "name": "home-care-api",
+  "version": "1.0.0",
+  "description": "Api para registro de solicitações de atendimentos emergenciais home care",
+  "main": "src/server.ts",
+  "scripts": {
+    "dev": "node --import=tsx --watch ./src/server.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeandersonSantos/home-care-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JeandersonSantos/home-care-api/issues"
+  },
+  "homepage": "https://github.com/JeandersonSantos/home-care-api#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}
