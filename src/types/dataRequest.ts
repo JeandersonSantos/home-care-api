@@ -1,6 +1,8 @@
 export interface DataRequest {
-  date: string;
   name: string;
   phone: string;
-  address: string;
+  street: string;
+  number: string;
+  neighborhood: string;
+  city: string;
 }
