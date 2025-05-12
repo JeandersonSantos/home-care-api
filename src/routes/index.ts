@@ -7,9 +7,9 @@ import {
 } from "../controllers/requestMedicalController";
 const router = express.Router();
 
-router.post("/request-medical-care", createMedicalRequest);
-router.get("/request-medical-care", listMedicalRequests);
-router.patch("/request-medical-care", updateMedicalRequest);
-router.delete("/request-medical-care", deleteMedicalRequest);
+router.post("/attendance", createMedicalRequest);
+router.get("/attendance", listMedicalRequests);
+router.patch("/attendance", updateMedicalRequest);
+router.delete("/attendance", deleteMedicalRequest);
 
 export default router;

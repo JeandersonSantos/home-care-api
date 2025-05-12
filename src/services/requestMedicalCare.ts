@@ -13,44 +13,32 @@ export const getRequestMedicalCare = async () => {
 
 export const createRequestMedicalCare = async (dataRequest: DataRequest) => {
   const {
-    date,
     name,
     phone,
-    cep,
     street,
     number,
-    complement,
     neighborhood,
     city,
-    state,
   } = dataRequest;
   try {
     const query = `
       INSERT INTO request_medical (
-        date,
         name,
         phone,
-        cep,
         street,
         number,
-        complement,
         neighborhood,
-        city,
-        state
-      ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+        city
+      ) VALUES ($1, $2, $3, $4, $5, $6)
       RETURNING *;
     `;
     const values = [
-      date,
       name,
       phone,
-      cep,
       street,
       number,
-      complement,
       neighborhood,
       city,
-      state,
     ];
     const result = await pool.query(query, values);
     return result.rows[0];

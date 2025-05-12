@@ -10,46 +10,33 @@ import { DataRequest } from "../types/dataRequest";
 export const createMedicalRequest = async (req: Request, res: Response) => {
   try {
     const {
-      date = "",
       name = "",
       phone = "",
-      cep = "",
       street = "",
       number = "",
-      complement = "",
       neighborhood = "",
       city = "",
-      state = "",
     } = req.body || {};
-
     if (
-      !date ||
       !name ||
       !phone ||
-      !cep ||
       !street ||
       !number ||
       !neighborhood ||
-      !city ||
-      !state
+      !city 
     ) {
       res.status(400).json({ error: "Todos os campos são obrigatórios" });
       return;
     }
 
     const dataRequest: DataRequest = {
-      date,
       name,
       phone,
-      cep,
       street,
       number,
-      complement,
       neighborhood,
       city,
-      state,
     };
-
     const result = await createRequestMedicalCare(dataRequest);
     res.status(201).json({
       infoRequestCare: result,

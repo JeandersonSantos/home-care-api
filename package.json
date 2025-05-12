@@ -17,11 +17,13 @@
   },
   "homepage": "https://github.com/JeandersonSantos/home-care-api#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
     "pg": "^8.15.6"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.18",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.17",
     "@types/pg": "^8.15.1",
