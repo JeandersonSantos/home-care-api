@@ -6,6 +6,7 @@ import {
   deleteRequestMedicalCare,
 } from "../services/requestMedicalCare";
 import { DataRequest } from "../types/dataRequest";
+import  generateProtocolNumber  from "../utils/generateProtocolNumber";
 
 export const createMedicalRequest = async (req: Request, res: Response) => {
   try {
@@ -38,9 +39,10 @@ export const createMedicalRequest = async (req: Request, res: Response) => {
       city,
     };
     const result = await createRequestMedicalCare(dataRequest);
+    const careProtocol = generateProtocolNumber(); 
     res.status(201).json({
       infoRequestCare: result,
-      careProtocol: "11235813213455",
+      careProtocol: careProtocol,
       doctor: "Dr. João Pedro",
     });
   } catch (error) {
@@ -50,7 +52,7 @@ export const createMedicalRequest = async (req: Request, res: Response) => {
 
 export const listMedicalRequests = async (req: Request, res: Response) => {
   const list = await getRequestMedicalCare();
-  res.status(200).json({ requests: list });
+  res.status(200).json({  ...list });
 };
 
 export const updateMedicalRequest = async (req: Request, res: Response) => {
