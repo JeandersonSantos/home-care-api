@@ -1,2 +1,9 @@
 .env
 .vercel
+# Node modules
+node_modules/
+# Build files
+dist/
+*.log
+# Vercel
+.vercel/
