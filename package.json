@@ -5,7 +5,8 @@
   "main": "src/server.ts",
   "scripts": {
     "dev": "node --env-file=.env --import=tsx --watch ./src/server.ts",
-    "start:worker": "ts-node whatsappWorker.ts"
+    "build": "tsc",
+    "start": "node dist/server.js"
   },
   "repository": {
     "type": "git",
