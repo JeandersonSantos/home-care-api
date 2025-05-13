@@ -1,12 +1,23 @@
-# home-care-api
-Api para uma projeto de registro de atendimentos emergenciais home care
+# 🏥 home-care-api
 
-#### Pré-requisitos
+API para registro de solicitações de atendimentos emergenciais **home care**.
 
-- [Node.js](https://nodejs.org/en/) v22.15.0
+---
 
-#### Instalação
-$ npm install
+## 📋 Pré-requisitos
 
-#### Utilização
-$ npm run dev
+Antes de começar, certifique-se de ter o seguinte instalado:
+
+- [Node.js](https://nodejs.org/en/) `v22.15.0`
+- [npm](https://www.npmjs.com/)
+
+---
+
+## ⚙️ Instalação
+
+Clone o repositório e instale as dependências:
+
+```bash
+git clone https://github.com/JeandersonSantos/home-care-api.git
+cd home-care-api
+npm install
