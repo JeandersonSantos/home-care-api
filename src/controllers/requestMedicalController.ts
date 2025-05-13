@@ -7,7 +7,6 @@ import {
 } from "../services/requestMedicalCare";
 import { DataRequest } from "../types/dataRequest";
 import  generateProtocolNumber  from "../utils/generateProtocolNumber";
-
 export const createMedicalRequest = async (req: Request, res: Response) => {
   try {
     const {
@@ -40,11 +39,13 @@ export const createMedicalRequest = async (req: Request, res: Response) => {
     };
     const result = await createRequestMedicalCare(dataRequest);
     const careProtocol = generateProtocolNumber(); 
+    
     res.status(201).json({
       infoRequestCare: result,
       careProtocol: careProtocol,
       doctor: "Dr. João Pedro",
     });
+     
   } catch (error) {
     res.status(500).json({ error: "Erro interno ao criar a solicitação" });
   }
