@@ -1,14 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es2016",                                 
-    "module": "commonjs",                                
-    "esModuleInterop": true,                             
-    "forceConsistentCasingInFileNames": true,           
-    "strict": true,                                     
+    "target": "es2018",
+    "module": "commonjs",
+    "lib": ["esnext"],
+    "esModuleInterop": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "rootDir": ".",
     "skipLibCheck": true,
-    "outDir": "./dist",
-    "rootDir": "./src"                               
+    "resolveJsonModule": true,
+    "types": ["node"]
   },
-  "include": ["src/**/*", "src/api"],
+  "include": ["src/**/*", "api/**/*"],
   "exclude": ["node_modules"]
 }
