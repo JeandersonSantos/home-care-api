@@ -7,7 +7,7 @@ const server = express();
 server.use(helmet());
 
 server.use(cors({
-  origin: 'http://localhost:5173', 
+  origin: process.env.CORS_ORIGIN, 
   credentials: true
 }));
 
@@ -19,3 +19,4 @@ server.use('/', router);
 server.listen(3001, () => {
   console.info('Serviço rodando: http://localhost:3001');
 });
+export default server;
