@@ -21,8 +21,10 @@
   "dependencies": {
     "amqplib": "^0.10.8",
     "cors": "^2.8.5",
+    "dayjs": "^1.11.13",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "node-fetch": "^3.3.2",
     "pg": "^8.15.6",
     "serverless-http": "^3.2.0"
   },

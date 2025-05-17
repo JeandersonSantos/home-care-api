@@ -7,6 +7,10 @@ import {
 } from "../services/requestMedicalCare";
 import { DataRequest } from "../types/dataRequest";
 import  generateProtocolNumber  from "../utils/generateProtocolNumber";
+import {
+  sendMenssageProtocol
+} from "../services/sendMenssage";
+
 export const createMedicalRequest = async (req: Request, res: Response) => {
   try {
     const {
@@ -17,37 +21,67 @@ export const createMedicalRequest = async (req: Request, res: Response) => {
       neighborhood = "",
       city = "",
     } = req.body || {};
+
     if (
-      !name ||
-      !phone ||
-      !street ||
-      !number ||
-      !neighborhood ||
-      !city 
+      !name.trim() ||
+      !phone.trim() ||
+      !street.trim() ||
+      !number.trim() ||
+      !neighborhood.trim() ||
+      !city.trim()
     ) {
-      res.status(400).json({ error: "Todos os campos são obrigatórios" });
+      res.status(400).json({ error: 'Todos os campos são obrigatórios e não podem ser vazios' });
       return;
     }
 
+    const cleanPhone = phone.replace(/\D/g, '');
+    if (cleanPhone.length < 10) {
+      throw new Error(`Número de telefone inválido `);
+    }
+
     const dataRequest: DataRequest = {
-      name,
-      phone,
-      street,
-      number,
-      neighborhood,
-      city,
+      name: name.trim(),
+      phone: cleanPhone,
+      street: street.trim(),
+      number: number.trim(),
+      neighborhood: neighborhood.trim(),
+      city: city.trim(),
     };
+
     const result = await createRequestMedicalCare(dataRequest);
     const careProtocol = generateProtocolNumber(); 
-    
+    const doctor = "Dr. João Pedro";
+
     res.status(201).json({
       infoRequestCare: result,
       careProtocol: careProtocol,
-      doctor: "Dr. João Pedro",
+      doctor,
     });
-     
+
+    const sendMessageRequest = {
+      protocol: careProtocol,
+      date: result.createdAt || new Date(),
+      name: name.trim(),
+      doctor,
+      phone: cleanPhone,
+      id: result.id,
+    };    
+    
+    sendMenssageProtocol(sendMessageRequest)
+      .then((data) => {
+        console.debug(`Mensagem Enviada:`, data);
+      })
+      .catch((error: unknown) => {
+        let errorMessage = 'Erro desconhecido';
+        if (error instanceof Error) {
+          errorMessage = error.message;
+        }
+        console.error(`Erro ao enviar mensagem, erro: ${errorMessage}`);
+      });
+
   } catch (error) {
     res.status(500).json({ error: "Erro interno ao criar a solicitação" });
+
   }
 };
 
