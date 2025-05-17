@@ -11,12 +11,11 @@ const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:5173';
 app.use(
   cors({
     origin: allowedOrigin,
-    methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
   })
 );
-app.options("*", cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
